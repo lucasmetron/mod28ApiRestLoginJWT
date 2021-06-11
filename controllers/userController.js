@@ -1,14 +1,24 @@
-const userController = {
-    register: function (req, res) {
+const User = require('../models/User');
 
-        console.log("resgitro")
-        res.send("Registro Novo")
+const userController = {
+    register: async function (req, res) {
+        const user = new User({
+            name: req.body.name,
+            email: req.body.email,
+            password: req.body.password
+        });
+
+        try {
+            const savedUser = await user.save();
+            res.send(savedUser);
+        } catch (error) {
+            res.status(400).send(error);
+        }
 
     },
 
     login: function (req, res) {
-        console.log("login")
-        res.send("Login Novo")
+
     },
 
 }
