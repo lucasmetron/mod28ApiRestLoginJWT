@@ -40,9 +40,9 @@ const userController = {
         }
 
 
-        const token = jwt.sign({ _id: selectedUser._id }, process.env.TOKEN_SECRET);
+        const token = jwt.sign({ _id: selectedUser._id, admin: selectedUser.admin }, process.env.TOKEN_SECRET);
 
-        res.header("autorization-token", token)
+        res.header("authorization-token", token)
         res.send("User logged")
 
     },
